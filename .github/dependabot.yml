@@ -1,0 +1,34 @@
+version: 2
+updates:
+  # Enable version updates for Python dependencies
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    reviewers:
+      - "bryankemp"
+    assignees:
+      - "bryankemp"
+    labels:
+      - "dependencies"
+      - "python"
+    open-pull-requests-limit: 5
+    
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    reviewers:
+      - "bryankemp"
+    assignees:
+      - "bryankemp"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    open-pull-requests-limit: 3
+
