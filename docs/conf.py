@@ -11,8 +11,8 @@ sys.path.insert(0, os.path.abspath('..'))
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Record Shelf'
-copyright = '2025, Bryan'
-author = 'Bryan'
+copyright = '2025, Bryan Kemp'
+author = 'Bryan Kemp'
 release = '1.0.0'
 version = '1.0.0'
 

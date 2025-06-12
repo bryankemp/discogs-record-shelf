@@ -6,7 +6,7 @@ with sorting by shelf and then alphabetically.
 """
 
 __version__ = "1.0.0"
-__author__ = "Bryan"
+__author__ = "Bryan Kemp"
 __email__ = "bryan@kempville.com"
 
 from .config import Config

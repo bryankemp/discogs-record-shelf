@@ -6,13 +6,7 @@ A tool for creating custom reports from music collection data
 with sorting by shelf and then alphabetically.
 """
 
-from pathlib import Path
-from typing import Any, Dict, List
-
 import click
-import discogs_client
-import pandas as pd
-from tqdm import tqdm
 
 from .config import Config
 from .report_generator import ReportGenerator

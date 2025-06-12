@@ -75,7 +75,7 @@ docs:
 	cd docs && ../venv/bin/python -m sphinx -b html . _build/html
 
 docs-serve:
-	cd docs/_build/html && python -m http.server 8000
+	cd docs/_build/html && python3 -m http.server 8000
 
 docs-clean:
 	rm -rf docs/_build docs/api/_autosummary
