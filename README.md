@@ -1,6 +1,12 @@
-# Discogs Custom Reports Tool
+# Discogs Record Shelf
 
-A Python tool for creating custom reports from your Discogs collection with sorting by shelf and then alphabetically.
+A Python tool for creating custom reports from your Discogs music collection with sorting by shelf and then alphabetically.
+
+## Installation
+
+```bash
+pip install discogs-record-shelf
+```
 
 ## Features
 
@@ -21,15 +27,9 @@ A Python tool for creating custom reports from your Discogs collection with sort
 3. Generate a personal access token
 4. Save your token - you'll need it to run the tool
 
-### 2. Install Dependencies
+### 2. Quick Start
 
-```bash
-# Activate virtual environment
-source venv/bin/activate
-
-# Install required packages
-pip install -r requirements.txt
-```
+After installation, the `record-shelf` command is available globally.
 
 ### 3. Set Environment Variable (Optional)
 
@@ -46,37 +46,37 @@ Or pass it directly via the `--token` option when running commands.
 ### Generate a Full Collection Report
 
 ```bash
-python main.py generate --username YOUR_DISCOGS_USERNAME --output my_collection.xlsx
+record-shelf generate --username YOUR_DISCOGS_USERNAME --output my_collection.xlsx
 ```
 
 ### Generate Report with Token
 
 ```bash
-python main.py generate --token YOUR_TOKEN --username YOUR_DISCOGS_USERNAME
+record-shelf generate --token YOUR_TOKEN --username YOUR_DISCOGS_USERNAME
 ```
 
 ### Filter by Specific Shelf
 
 ```bash
-python main.py generate --username YOUR_DISCOGS_USERNAME --shelf "Vinyl" --output vinyl_collection.xlsx
+record-shelf generate --username YOUR_DISCOGS_USERNAME --shelf "Vinyl" --output vinyl_collection.xlsx
 ```
 
 ### Generate CSV Report
 
 ```bash
-python main.py generate --username YOUR_DISCOGS_USERNAME --format csv --output collection.csv
+record-shelf generate --username YOUR_DISCOGS_USERNAME --format csv --output collection.csv
 ```
 
 ### List Available Shelves
 
 ```bash
-python main.py list-shelves --username YOUR_DISCOGS_USERNAME
+record-shelf list-shelves --username YOUR_DISCOGS_USERNAME
 ```
 
 ### Enable Debug Logging
 
 ```bash
-python main.py --debug generate --username YOUR_DISCOGS_USERNAME
+record-shelf --debug generate --username YOUR_DISCOGS_USERNAME
 ```
 
 ## Report Format
@@ -159,38 +159,50 @@ The tool includes built-in rate limiting to respect Discogs API limits:
 Run with `--debug` flag to see detailed logging:
 
 ```bash
-python main.py --debug generate --username YOUR_USERNAME
+record-shelf --debug generate --username YOUR_USERNAME
 ```
 
-Logs are also saved to `discogs_tool.log`.
+Logs are also saved to `record_shelf.log`.
 
 ## Development
 
 ### Project Structure
 
 ```
-discogs-report-tool/
-├── main.py              # Main CLI application
-├── config.py            # Configuration management
-├── report_generator.py  # Core report generation logic
-├── utils.py             # Utility functions
-├── requirements.txt     # Python dependencies
+discogs-record-shelf/
+├── record_shelf/
+│   ├── __init__.py      # Package initialization
+│   ├── cli.py           # Main CLI application
+│   ├── config.py        # Configuration management
+│   ├── report_generator.py # Core report generation logic
+│   └── utils.py         # Utility functions
+├── docs/                # Documentation
+├── tests/               # Test suite
+├── pyproject.toml       # Project configuration
 ├── README.md           # This file
-└── venv/               # Virtual environment
+└── LICENSE             # BSD 3-Clause License
 ```
 
 ### Adding New Features
 
 1. Core logic goes in `report_generator.py`
-2. CLI commands are added to `main.py`
+2. CLI commands are added to `cli.py`
 3. Configuration options go in `config.py`
 4. Utilities and helpers go in `utils.py`
 
 ## License
 
-This project is for personal use. Please respect Discogs' Terms of Service and API rate limits.
+This project is licensed under the BSD 3-Clause License. See the LICENSE file for details.
+
+Please respect Discogs' Terms of Service and API rate limits when using this tool.
+
+## Links
+
+- **PyPI**: https://pypi.org/project/discogs-record-shelf/
+- **GitHub**: https://github.com/bryankemp/discogs-record-shelf
+- **Documentation**: https://discogs-record-shelf.readthedocs.io/
 
 ## Contributing
 
-Feel free to submit issues and enhancement requests!
+Feel free to submit issues and enhancement requests on GitHub!
 

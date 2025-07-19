@@ -1,5 +1,9 @@
-Record Shelf Documentation
-===========================
+Discogs Record Shelf Documentation
+====================================
+
+.. image:: https://img.shields.io/pypi/v/discogs-record-shelf
+   :target: https://pypi.org/project/discogs-record-shelf/
+   :alt: PyPI Version
 
 .. image:: https://img.shields.io/badge/python-3.8+-blue.svg
    :target: https://www.python.org/downloads/
@@ -9,11 +13,11 @@ Record Shelf Documentation
    :target: https://github.com/psf/black
    :alt: Code style: black
 
-.. image:: https://img.shields.io/badge/License-MIT-yellow.svg
-   :target: https://opensource.org/licenses/MIT
-   :alt: License: MIT
+.. image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg
+   :target: https://opensource.org/licenses/BSD-3-Clause
+   :alt: License: BSD 3-Clause
 
-Record Shelf is a professional Python tool for creating custom reports from music collection data with sorting by shelf and then alphabetically.
+Discogs Record Shelf is a professional Python tool for creating custom reports from your Discogs music collection with intelligent sorting by shelf and alphabetical organization.
 
 Features
 --------
@@ -50,7 +54,7 @@ Quick Start
 
 1. **Installation**::
 
-    pip install record-shelf
+    pip install discogs-record-shelf
 
 2. **Get your Discogs API token** from https://www.discogs.com/settings/developers
 
@@ -122,7 +126,9 @@ Support
 License
 -------
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the BSD 3-Clause License - see the LICENSE file for details.
+
+Please respect Discogs' Terms of Service and API rate limits when using this tool.
 
 Indices and tables
 ==================
