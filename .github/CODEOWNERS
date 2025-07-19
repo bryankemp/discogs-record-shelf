@@ -1,0 +1,19 @@
+# Global code owners
+# These owners will be requested for review when anyone opens a pull request
+* @bryankemp
+
+# Dependency files - automatically reviewed for Dependabot PRs
+requirements.txt @bryankemp
+pyproject.toml @bryankemp
+setup.py @bryankemp
+setup.cfg @bryankemp
+Pipfile @bryankemp
+Pipfile.lock @bryankemp
+
+# GitHub Actions workflows
+.github/workflows/ @bryankemp
+
+# Documentation
+docs/ @bryankemp
+README.md @bryankemp
+*.md @bryankemp
