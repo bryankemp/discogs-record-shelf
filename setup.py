@@ -29,14 +29,14 @@ dev_requirements = [
 ]
 
 setup(
-    name="record-shelf",
+    name="discogs-record-shelf",
     version="1.0.0",
     author="Bryan Kemp",
     author_email="bryan@kempville.com",
     description="A tool for creating custom reports from music collection data",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/bryankemp/record-shelf",
+    url="https://github.com/bryankemp/discogs-record-shelf",
     packages=find_packages(exclude=["tests", "tests.*"]),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -67,9 +67,9 @@ setup(
     },
     keywords="music collection report excel csv shelf organize",
     project_urls={
-        "Bug Reports": "https://github.com/bryankemp/record-shelf/issues",
-        "Source": "https://github.com/bryankemp/record-shelf",
-        "Documentation": "https://github.com/bryankemp/record-shelf#readme",
+        "Bug Reports": "https://github.com/bryankemp/discogs-record-shelf/issues",
+        "Source": "https://github.com/bryankemp/discogs-record-shelf",
+        "Documentation": "https://discogs-record-shelf.readthedocs.io/",
     },
     include_package_data=True,
     zip_safe=False,
