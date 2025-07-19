@@ -2,7 +2,7 @@
 Record Shelf
 
 A tool for creating custom reports from music collection data
-with sorting by shelf and then alphabetically.
+with sorting by category and then alphabetically.
 """
 
 __version__ = "1.0.0"

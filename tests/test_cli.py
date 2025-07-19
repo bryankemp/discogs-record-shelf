@@ -21,7 +21,7 @@ class TestCLI:
         assert result.exit_code == 0
         assert "Record Shelf - Music Collection Reports Tool" in result.output
         assert "generate" in result.output
-        assert "list-shelves" in result.output
+        assert "list-categories" in result.output
 
     def test_generate_help(self):
         """Test generate command help."""
@@ -31,11 +31,11 @@ class TestCLI:
         assert "--username" in result.output
         assert "--token" in result.output
 
-    def test_list_shelves_help(self):
-        """Test list-shelves command help."""
-        result = self.runner.invoke(cli, ["list-shelves", "--help"])
+    def test_list_categories_help(self):
+        """Test list-categories command help."""
+        result = self.runner.invoke(cli, ["list-categories", "--help"])
         assert result.exit_code == 0
-        assert "List all shelves" in result.output
+        assert "List all categories" in result.output
         assert "--username" in result.output
 
     @patch("record_shelf.cli.ReportGenerator")
@@ -70,32 +70,32 @@ class TestCLI:
         # Verify mocks were called
         mock_config.assert_called_once()
         mock_gen_instance.fetch_collection_data.assert_called_once_with(
-            "testuser", shelf_filter=None
+            "testuser", category_filter=None
         )
         mock_gen_instance.create_report.assert_called_once()
 
     @patch("record_shelf.cli.ReportGenerator")
     @patch("record_shelf.cli.Config")
-    def test_list_shelves_command_success(self, mock_config, mock_generator):
-        """Test successful list-shelves command."""
+    def test_list_categories_command_success(self, mock_config, mock_generator):
+        """Test successful list-categories command."""
         # Setup mocks
         mock_config.return_value = MagicMock()
         mock_gen_instance = MagicMock()
         mock_generator.return_value = mock_gen_instance
-        mock_gen_instance.get_user_shelves.return_value = ["Vinyl", "CD", "Digital"]
+        mock_gen_instance.get_user_categories.return_value = ["Vinyl", "CD", "Digital"]
 
         result = self.runner.invoke(
-            cli, ["list-shelves", "--token", "test_token", "--username", "testuser"]
+            cli, ["list-categories", "--token", "test_token", "--username", "testuser"]
         )
 
         assert result.exit_code == 0
-        assert "Available shelves:" in result.output
+        assert "Available categories:" in result.output
         assert "- Vinyl" in result.output
         assert "- CD" in result.output
         assert "- Digital" in result.output
 
         # Verify mocks were called
-        mock_gen_instance.get_user_shelves.assert_called_once_with("testuser")
+        mock_gen_instance.get_user_categories.assert_called_once_with("testuser")
 
     def test_generate_missing_username(self):
         """Test generate command with missing username."""

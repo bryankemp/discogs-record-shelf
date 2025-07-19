@@ -3,14 +3,14 @@
 Record Shelf
 
 A tool for creating custom reports from music collection data
-with sorting by shelf and then alphabetically.
+with sorting by category and then alphabetically.
 """
 
 import click
 
-from .config import Config
-from .report_generator import ReportGenerator
-from .utils import setup_logging
+from record_shelf.config import Config
+from record_shelf.report_generator import ReportGenerator
+from record_shelf.utils import setup_logging
 
 
 @click.group()
@@ -29,7 +29,7 @@ def cli(ctx, debug):
 @click.option(
     "--output", "-o", default="collection_report.xlsx", help="Output file path"
 )
-@click.option("--shelf", help="Filter by specific shelf (optional)")
+@click.option("--category", help="Filter by specific category (optional)")
 @click.option(
     "--format",
     type=click.Choice(["xlsx", "csv", "html"]),
@@ -37,14 +37,14 @@ def cli(ctx, debug):
     help="Output format",
 )
 @click.pass_context
-def generate(ctx, token, username, output, shelf, format):
+def generate(ctx, token, username, output, category, format):
     """Generate a custom Discogs collection report"""
     try:
         config = Config(token=token, debug=ctx.obj["debug"])
         generator = ReportGenerator(config)
 
         click.echo(f"Fetching collection for user: {username}")
-        report_data = generator.fetch_collection_data(username, shelf_filter=shelf)
+        report_data = generator.fetch_collection_data(username, category_filter=category)
 
         click.echo(f"Generating report with {len(report_data)} items...")
         generator.create_report(report_data, output, format)
@@ -59,17 +59,17 @@ def generate(ctx, token, username, output, shelf, format):
 @cli.command()
 @click.option("--token", help="Discogs API token (or set DISCOGS_TOKEN env var)")
 @click.option("--username", required=True, help="Discogs username")
-def list_shelves(token, username):
-    """List all shelves in the user's collection"""
+def list_categories(token, username):
+    """List all categories in the user's collection"""
     try:
         config = Config(token=token)
         generator = ReportGenerator(config)
 
-        shelves = generator.get_user_shelves(username)
+        categories = generator.get_user_categories(username)
 
-        click.echo("Available shelves:")
-        for shelf in shelves:
-            click.echo(f"  - {shelf}")
+        click.echo("Available categories:")
+        for category in categories:
+            click.echo(f"  - {category}")
 
     except Exception as e:
         click.echo(f"Error: {e}", err=True)

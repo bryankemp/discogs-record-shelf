@@ -26,25 +26,25 @@ class ReportGenerator:
             user_agent=config.user_agent, token=config.token
         )
 
-    def get_user_shelves(self, username: str) -> List[str]:
-        """Get list of shelves for a user"""
+    def get_user_categories(self, username: str) -> List[str]:
+        """Get list of categories for a user"""
         try:
             user = self.client.user(username)
             collection_folders = user.collection_folders
 
-            shelves = []
+            categories = []
             for folder in collection_folders:
-                shelves.append(folder.name)
+                categories.append(folder.name)
                 time.sleep(self.config.rate_limit_delay)
 
-            return sorted(shelves)
+            return sorted(categories)
 
         except Exception as e:
-            self.logger.error(f"Error fetching shelves for {username}: {e}")
+            self.logger.error(f"Error fetching categories for {username}: {e}")
             raise
 
     def fetch_collection_data(
-        self, username: str, shelf_filter: Optional[str] = None
+        self, username: str, category_filter: Optional[str] = None
     ) -> List[Dict[str, Any]]:
         """Fetch collection data for a user"""
         try:
@@ -55,8 +55,8 @@ class ReportGenerator:
             folders = user.collection_folders
 
             for folder in tqdm(folders, desc="Processing folders"):
-                # Skip if filtering by shelf and this isn't the target shelf
-                if shelf_filter and folder.name != shelf_filter:
+                # Skip if filtering by category and this isn't the target category
+                if category_filter and folder.name != category_filter:
                     continue
 
                 self.logger.info(f"Processing folder: {folder.name}")
@@ -80,9 +80,9 @@ class ReportGenerator:
                         )
                         continue
 
-            # Sort by shelf, then alphabetically by artist/title
+            # Sort by category, then alphabetically by artist/title
             collection_items.sort(
-                key=lambda x: (x["shelf"], x["artist"].lower(), x["title"].lower())
+                key=lambda x: (x["category"], x["artist"].lower(), x["title"].lower())
             )
 
             return collection_items
@@ -91,14 +91,14 @@ class ReportGenerator:
             self.logger.error(f"Error fetching collection for {username}: {e}")
             raise
 
-    def _extract_release_data(self, release, shelf_name: str) -> Dict[str, Any]:
+    def _extract_release_data(self, release, category_name: str) -> Dict[str, Any]:
         """Extract relevant data from a release object"""
         try:
             # Get basic release info
             master_release = getattr(release, "master", None)
 
             return {
-                "shelf": shelf_name,
+                "category": category_name,
                 "artist": self._get_artist_name(release),
                 "title": getattr(release, "title", ""),
                 "label": self._get_label_name(release),
@@ -119,7 +119,7 @@ class ReportGenerator:
         except Exception as e:
             self.logger.warning(f"Error extracting release data: {e}")
             return {
-                "shelf": shelf_name,
+                "category": category_name,
                 "artist": "Unknown",
                 "title": "Unknown",
                 "label": "",
@@ -215,7 +215,7 @@ class ReportGenerator:
 
         # Reorder columns for better readability
         column_order = [
-            "shelf",
+            "category",
             "artist",
             "title",
             "label",
@@ -242,11 +242,11 @@ class ReportGenerator:
             with pd.ExcelWriter(output_path, engine="openpyxl") as writer:
                 df.to_excel(writer, sheet_name="Collection", index=False)
 
-                # Create separate sheets for each shelf
-                for shelf in df["shelf"].unique():
-                    shelf_data = df[df["shelf"] == shelf]
-                    sheet_name = shelf[:31]  # Excel sheet name limit
-                    shelf_data.to_excel(writer, sheet_name=sheet_name, index=False)
+                # Create separate sheets for each category
+                for category in df["category"].unique():
+                    category_data = df[df["category"] == category]
+                    sheet_name = category[:31]  # Excel sheet name limit
+                    category_data.to_excel(writer, sheet_name=sheet_name, index=False)
 
         elif format_type == "csv":
             df.to_csv(output_path, index=False)
@@ -265,8 +265,8 @@ class ReportGenerator:
 
         stats = {
             "total_items": len(df),
-            "shelves": df["shelf"].unique().tolist(),
-            "items_per_shelf": df["shelf"].value_counts().to_dict(),
+            "categories": df["category"].unique().tolist(),
+            "items_per_category": df["category"].value_counts().to_dict(),
             "top_artists": df["artist"].value_counts().head(10).to_dict(),
             "top_labels": df["label"].value_counts().head(10).to_dict(),
             "formats": df["format"].value_counts().to_dict(),

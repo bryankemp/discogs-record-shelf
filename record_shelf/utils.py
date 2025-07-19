@@ -30,10 +30,10 @@ def print_stats(stats: Dict[str, Any]) -> None:
     print(f"\n=== Collection Statistics ===")
     print(f"Total Items: {stats.get('total_items', 0)}")
 
-    if "items_per_shelf" in stats:
-        print(f"\nItems per Shelf:")
-        for shelf, count in stats["items_per_shelf"].items():
-            print(f"  {shelf}: {count}")
+    if "items_per_category" in stats:
+        print(f"\nItems per Category:")
+        for category, count in stats["items_per_category"].items():
+            print(f"  {category}: {count}")
 
     if "top_artists" in stats:
         print(f"\nTop 10 Artists:")
