@@ -30,7 +30,7 @@ dev_requirements = [
 
 setup(
     name="discogs-record-shelf",
-    version="1.0.0",
+    version="1.0.1",
     author="Bryan Kemp",
     author_email="bryan@kempville.com",
     description="A tool for creating custom reports from music collection data",
