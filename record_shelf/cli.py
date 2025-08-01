@@ -39,7 +39,14 @@ def cli(ctx: click.Context, debug: bool) -> None:
     help="Output format",
 )
 @click.pass_context
-def generate(ctx: click.Context, token: Optional[str], username: str, output: str, category: Optional[str], format: str) -> None:
+def generate(
+    ctx: click.Context,
+    token: Optional[str],
+    username: str,
+    output: str,
+    category: Optional[str],
+    format: str,
+) -> None:
     """Generate a custom Discogs collection report"""
     try:
         config = Config(token=token, debug=ctx.obj["debug"])
