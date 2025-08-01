@@ -16,7 +16,7 @@ class Config:
     debug: bool = False
     rate_limit_delay: float = 1.0  # seconds between API calls
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         # Get token from environment if not provided
         if not self.token:
             self.token = os.getenv("DISCOGS_TOKEN")

@@ -5,7 +5,7 @@ A tool for creating custom reports from music collection data
 with sorting by category and then alphabetically.
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.3"
 __author__ = "Bryan Kemp"
 __email__ = "bryan@kempville.com"
 

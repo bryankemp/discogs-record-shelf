@@ -91,7 +91,7 @@ class ReportGenerator:
             self.logger.error(f"Error fetching collection for {username}: {e}")
             raise
 
-    def _extract_release_data(self, release, category_name: str) -> Dict[str, Any]:
+    def _extract_release_data(self, release: Any, category_name: str) -> Dict[str, Any]:
         """Extract relevant data from a release object"""
         try:
             # Get basic release info
@@ -135,7 +135,7 @@ class ReportGenerator:
                 "notes": "",
             }
 
-    def _get_artist_name(self, release) -> str:
+    def _get_artist_name(self, release: Any) -> str:
         """Extract artist name from release"""
         try:
             artists = getattr(release, "artists", [])
@@ -145,7 +145,7 @@ class ReportGenerator:
         except:
             return "Unknown Artist"
 
-    def _get_label_name(self, release) -> str:
+    def _get_label_name(self, release: Any) -> str:
         """Extract label name from release"""
         try:
             labels = getattr(release, "labels", [])
@@ -155,7 +155,7 @@ class ReportGenerator:
         except:
             return ""
 
-    def _get_catalog_number(self, release) -> str:
+    def _get_catalog_number(self, release: Any) -> str:
         """Extract catalog number from release"""
         try:
             labels = getattr(release, "labels", [])
@@ -170,7 +170,7 @@ class ReportGenerator:
         except:
             return ""
 
-    def _get_format_info(self, release) -> str:
+    def _get_format_info(self, release: Any) -> str:
         """Extract format information from release"""
         try:
             formats = getattr(release, "formats", [])
@@ -187,7 +187,7 @@ class ReportGenerator:
         except:
             return ""
 
-    def _get_genres(self, release) -> str:
+    def _get_genres(self, release: Any) -> str:
         """Extract genres from release"""
         try:
             genres = getattr(release, "genres", [])
@@ -195,7 +195,7 @@ class ReportGenerator:
         except:
             return ""
 
-    def _get_styles(self, release) -> str:
+    def _get_styles(self, release: Any) -> str:
         """Extract styles from release"""
         try:
             styles = getattr(release, "styles", [])
@@ -205,7 +205,7 @@ class ReportGenerator:
 
     def create_report(
         self, data: List[Dict[str, Any]], output_path: str, format_type: str = "xlsx"
-    ):
+    ) -> None:
         """Create a report from the collection data"""
         if not data:
             raise ValueError("No data to generate report")
@@ -236,10 +236,10 @@ class ReportGenerator:
         df = df[existing_columns]
 
         # Save based on format
-        output_path = Path(output_path)
+        output_file_path = Path(output_path)
 
         if format_type == "xlsx":
-            with pd.ExcelWriter(output_path, engine="openpyxl") as writer:
+            with pd.ExcelWriter(output_file_path, engine="openpyxl") as writer:
                 df.to_excel(writer, sheet_name="Collection", index=False)
 
                 # Create separate sheets for each category
@@ -249,12 +249,12 @@ class ReportGenerator:
                     category_data.to_excel(writer, sheet_name=sheet_name, index=False)
 
         elif format_type == "csv":
-            df.to_csv(output_path, index=False)
+            df.to_csv(output_file_path, index=False)
 
         elif format_type == "html":
-            df.to_html(output_path, index=False, escape=False)
+            df.to_html(output_file_path, index=False, escape=False)
 
-        self.logger.info(f"Report saved to {output_path}")
+        self.logger.info(f"Report saved to {output_file_path}")
 
     def generate_summary_stats(self, data: List[Dict[str, Any]]) -> Dict[str, Any]:
         """Generate summary statistics for the collection"""

@@ -66,9 +66,9 @@ Quick Start
 
     record-shelf generate --username YOUR_DISCOGS_USERNAME
 
-5. **List available shelves**::
+5. **List available categories**::
 
-    record-shelf list-shelves --username YOUR_DISCOGS_USERNAME
+    record-shelf list-categories --username YOUR_DISCOGS_USERNAME
 
 Documentation Contents
 ----------------------

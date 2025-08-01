@@ -5,20 +5,13 @@ Config Module
    :members:
    :undoc-members:
    :show-inheritance:
+   :no-index:
 
 Configuration Management
 ------------------------
 
 The Config module handles application configuration, including API tokens,
 user agents, and rate limiting settings.
-
-Config Class
-~~~~~~~~~~~~
-
-.. autoclass:: record_shelf.config.Config
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 Usage Examples
 --------------

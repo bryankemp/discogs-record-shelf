@@ -5,25 +5,12 @@ CLI Module
    :members:
    :undoc-members:
    :show-inheritance:
+   :no-index:
 
 Command Line Interface
 ----------------------
 
 The CLI module provides the command-line interface for Record Shelf using the Click framework.
-
-Main Entry Point
-~~~~~~~~~~~~~~~~
-
-.. autofunction:: record_shelf.cli.main
-
-Commands
-~~~~~~~~
-
-.. autofunction:: record_shelf.cli.cli
-
-.. autofunction:: record_shelf.cli.generate
-
-.. autofunction:: record_shelf.cli.list_shelves
 
 Usage Examples
 --------------

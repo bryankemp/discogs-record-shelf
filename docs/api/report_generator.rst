@@ -5,6 +5,7 @@ Report Generator Module
    :members:
    :undoc-members:
    :show-inheritance:
+   :no-index:
 
 Report Generation
 -----------------
@@ -52,14 +53,14 @@ Filtered Report Generation
    config = Config(token="your_token")
    generator = ReportGenerator(config)
 
-   # Get available shelves
-   shelves = generator.get_user_shelves("username")
-   print(f"Available shelves: {shelves}")
+   # Get available categories
+   categories = generator.get_user_categories("username")
+   print(f"Available categories: {categories}")
 
    # Generate filtered report
    vinyl_data = generator.fetch_collection_data(
        username="username",
-       shelf_filter="Vinyl"
+       category_filter="Vinyl"
    )
 
    generator.create_report(vinyl_data, "vinyl.xlsx", "xlsx")
@@ -106,7 +107,7 @@ Data Fetching Methods
 
 .. automethod:: record_shelf.report_generator.ReportGenerator.fetch_collection_data
 
-.. automethod:: record_shelf.report_generator.ReportGenerator.get_user_shelves
+.. automethod:: record_shelf.report_generator.ReportGenerator.get_user_categories
 
 Report Creation Methods
 ~~~~~~~~~~~~~~~~~~~~~~~

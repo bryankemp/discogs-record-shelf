@@ -85,14 +85,14 @@ Advanced Usage
    # Initialize report generator
    generator = ReportGenerator(config)
 
-   # Get available shelves
-   shelves = generator.get_user_shelves("username")
-   print(f"Available shelves: {shelves}")
+   # Get available categories
+   categories = generator.get_user_categories("username")
+   print(f"Available categories: {categories}")
 
    # Fetch filtered data
    data = generator.fetch_collection_data(
        username="username",
-       shelf_filter="Vinyl"
+       category_filter="Vinyl"
    )
 
    # Generate statistics
@@ -117,11 +117,11 @@ Record Shelf includes comprehensive type hints for better IDE support and code q
    def process_collection(
        username: str,
        token: str,
-       shelf_filter: Optional[str] = None
+       category_filter: Optional[str] = None
    ) -> List[Dict[str, Any]]:
        config = Config(token=token)
        generator = ReportGenerator(config)
-       return generator.fetch_collection_data(username, shelf_filter)
+       return generator.fetch_collection_data(username, category_filter)
 
 Error Handling
 --------------

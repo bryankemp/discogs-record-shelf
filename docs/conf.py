@@ -13,8 +13,8 @@ sys.path.insert(0, os.path.abspath('..'))
 project = 'Discogs Record Shelf'
 copyright = '2025, Bryan Kemp'
 author = 'Bryan Kemp'
-release = '1.0.2'
-version = '1.0.2'
+release = '1.0.3'
+version = '1.0.3'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -59,6 +59,9 @@ autodoc_default_options = {
     'member-order': 'bysource',
 }
 
+# Suppress warnings for duplicate object descriptions
+suppress_warnings = ['autosummary.import_cycle']
+
 # Autosummary settings
 autosummary_generate = True
 
@@ -88,7 +91,6 @@ html_theme_options = {
     'analytics_id': '',
     'analytics_anonymize_ip': False,
     'logo_only': False,
-    'display_version': True,
     'prev_next_buttons_location': 'bottom',
     'style_external_links': False,
     'vcs_pageview_mode': '',

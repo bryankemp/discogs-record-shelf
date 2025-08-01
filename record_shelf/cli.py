@@ -8,6 +8,8 @@ with sorting by category and then alphabetically.
 
 import click
 
+from typing import Optional
+
 from record_shelf.config import Config
 from record_shelf.report_generator import ReportGenerator
 from record_shelf.utils import setup_logging
@@ -16,7 +18,7 @@ from record_shelf.utils import setup_logging
 @click.group()
 @click.option("--debug", is_flag=True, help="Enable debug logging")
 @click.pass_context
-def cli(ctx, debug):
+def cli(ctx: click.Context, debug: bool) -> None:
     """Record Shelf - Music Collection Reports Tool"""
     ctx.ensure_object(dict)
     ctx.obj["debug"] = debug
@@ -37,14 +39,16 @@ def cli(ctx, debug):
     help="Output format",
 )
 @click.pass_context
-def generate(ctx, token, username, output, category, format):
+def generate(ctx: click.Context, token: Optional[str], username: str, output: str, category: Optional[str], format: str) -> None:
     """Generate a custom Discogs collection report"""
     try:
         config = Config(token=token, debug=ctx.obj["debug"])
         generator = ReportGenerator(config)
 
         click.echo(f"Fetching collection for user: {username}")
-        report_data = generator.fetch_collection_data(username, category_filter=category)
+        report_data = generator.fetch_collection_data(
+            username, category_filter=category
+        )
 
         click.echo(f"Generating report with {len(report_data)} items...")
         generator.create_report(report_data, output, format)
@@ -59,7 +63,7 @@ def generate(ctx, token, username, output, category, format):
 @cli.command()
 @click.option("--token", help="Discogs API token (or set DISCOGS_TOKEN env var)")
 @click.option("--username", required=True, help="Discogs username")
-def list_categories(token, username):
+def list_categories(token: Optional[str], username: str) -> None:
     """List all categories in the user's collection"""
     try:
         config = Config(token=token)
