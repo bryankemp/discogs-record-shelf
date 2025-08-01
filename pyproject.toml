@@ -48,8 +48,8 @@ dev = [
     "twine>=4.0.0",
     "sphinx>=4.0.0",
     "sphinx-rtd-theme>=3.0.0",
-    "sphinx-autodoc-typehints>=3.0.0",
-    "sphinx-click>=6.0.0",
+    "sphinx-autodoc-typehints>=1.10.0",
+    "sphinx-click>=3.0.0",
 ]
 test = [
     "pytest>=7.0.0",
