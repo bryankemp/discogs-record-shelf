@@ -6,9 +6,9 @@ A tool for creating custom reports from music collection data
 with sorting by category and then alphabetically.
 """
 
-import click
-
 from typing import Optional
+
+import click
 
 from record_shelf.config import Config
 from record_shelf.report_generator import ReportGenerator
