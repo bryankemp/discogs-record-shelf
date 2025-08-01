@@ -72,7 +72,7 @@ upload: build
 	twine upload dist/*
 
 docs:
-	cd docs && ../venv/bin/python -m sphinx -b html . _build/html
+	cd docs && python -m sphinx -b html . _build/html
 
 docs-serve:
 	cd docs/_build/html && python3 -m http.server 8000
